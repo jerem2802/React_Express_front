@@ -4,12 +4,12 @@ import { useState } from "react";
 import EmployeeCards from "./EmployeeCards";
 const sampleEmployee = {
 	name: {
-		first: "Charlie",
-		last: "Thompson",
+		first: "",
+		last: "",
 	},
-	email: "charlie.thompson@example.com",
+	email: "",
 	picture: {
-		medium: "https://randomuser.me/api/portraits/med/men/40.jpg",
+		medium: "",
 	},
 };
 
@@ -17,13 +17,15 @@ function App() {
 	const [employee, setEmployee] = useState(sampleEmployee);
 	const getEmployee = () => {
 		// Send the request
-		fetch("https://randomuser.me/api?nat=en")
+		fetch("http://localhost:3310/api/employees")
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
-
 				setEmployee(data.results[0]);
-			});
+			})
+
+			// pour tester le .catch
+
+			.catch((error) => console.error(error));
 	};
 
 	return (
